@@ -1,0 +1,9 @@
+#!/usr/bin/env node --use_strict --harmony_modules --harmony-rest-parameters
+
+var argv = require('minimist')(process.argv.slice(2));
+var args = argv._;
+
+var Ion = require('../lib/ion');
+var ion = Ion.run(args, argv);
+
+

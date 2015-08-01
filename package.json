@@ -1,0 +1,20 @@
+{
+  "name": "ion",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "bin": {
+    "ion": "./bin/ion"
+  },
+  "dependencies": {
+    "handlebars": "3.0.3",
+    "underscore": "1.8.3",
+    "minimist": "1.1.2",
+    "require-dir": "0.3.0"
+  }
+}
