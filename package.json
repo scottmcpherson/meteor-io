@@ -15,6 +15,9 @@
     "handlebars": "3.0.3",
     "underscore": "1.8.3",
     "minimist": "1.1.2",
-    "require-dir": "0.3.0"
+    "require-dir": "0.3.0",
+    "fs-extra": "0.22.1",
+    "cli-color": "1.0.0",
+    "single-line-log": "1.0.0"
   }
 }
