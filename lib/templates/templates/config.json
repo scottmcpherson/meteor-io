@@ -1,0 +1,10 @@
+{
+  "commands": {
+    "create": {
+      "packages": {
+        "install": [],
+        "remove": []
+      }
+    }
+  }
+}
