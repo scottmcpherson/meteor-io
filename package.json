@@ -19,6 +19,7 @@
     "fs-extra": "0.22.1",
     "cli-color": "1.0.0",
     "single-line-log": "1.0.0",
-    "dotenv": "1.2.0"
+    "dotenv": "1.2.0",
+    "cli-table": "0.3.1"
   }
 }
