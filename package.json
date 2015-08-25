@@ -18,6 +18,7 @@
     "require-dir": "0.3.0",
     "fs-extra": "0.22.1",
     "cli-color": "1.0.0",
-    "single-line-log": "1.0.0"
+    "single-line-log": "1.0.0",
+    "dotenv": "1.2.0"
   }
 }
