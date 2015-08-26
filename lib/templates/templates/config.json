@@ -2,7 +2,7 @@
   "commands": {
     "create": {
       "packages": {
-        "add": [],
+        "add": ["kadira:flow-router"],
         "remove": []
       }
     }

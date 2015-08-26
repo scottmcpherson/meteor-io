@@ -3,7 +3,7 @@
 var argv = require('minimist')(process.argv.slice(2));
 var args = argv._;
 
-var Ion = require('../lib/ion');
-var ion = Ion.run(args, argv);
+var Io = require('../lib/io');
+var io = Io.run(args, argv);
 
 
