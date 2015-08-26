@@ -2,9 +2,14 @@
   "commands": {
     "create": {
       "packages": {
-        "install": [],
+        "add": [],
         "remove": []
       }
+    }
+  },
+  "generators": {
+    "template": {
+      "dest": "$appPath/templates"
     }
   }
 }
