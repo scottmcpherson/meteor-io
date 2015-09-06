@@ -5,5 +5,3 @@ var args = argv._;
 
 var Io = require('../lib/io');
 var io = Io.run(args, argv);
-
-
