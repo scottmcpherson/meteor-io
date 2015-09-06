@@ -2,14 +2,23 @@
   "commands": {
     "create": {
       "packages": {
-        "add": ["kadira:flow-router"],
-        "remove": []
+        "add": [
+          "kadira:flow-router",
+          "kadira:blaze-layout"
+        ],
+        "remove": [
+          "autopublish",
+          "insecure"
+        ]
       }
     }
   },
   "generators": {
     "template": {
-      "dest": "APP_PATH/templates"
+      "dest": "APP_PATH/client/templates/DEST_PATH"
+    },
+    "route": {
+      "dest": "APP_PATH/lib/routes.js"
     }
   }
 }

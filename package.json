@@ -16,15 +16,16 @@
     "io": "./bin/io"
   },
   "dependencies": {
-    "handlebars": "3.0.3",
-    "underscore": "1.8.3",
-    "minimist": "1.1.2",
-    "require-dir": "0.3.0",
-    "fs-extra": "0.22.1",
     "cli-color": "1.0.0",
-    "single-line-log": "1.0.0",
-    "dotenv": "1.2.0",
     "cli-table": "0.3.1",
-    "readline-sync": "1.2.20"
+    "dotenv": "1.2.0",
+    "fs-extra": "0.22.1",
+    "handlebars": "3.0.3",
+    "lodash": "^3.10.1",
+    "minimist": "1.1.2",
+    "readline-sync": "1.2.20",
+    "require-dir": "0.3.0",
+    "single-line-log": "1.0.0",
+    "underscore": "1.8.3"
   }
 }
