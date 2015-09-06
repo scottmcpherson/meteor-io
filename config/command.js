@@ -9,10 +9,10 @@ class {{className}} extends Command {
     // This name should match the file name without the extension
     this.name = '{{name}}';
     // A brief description on how to use
-    this.description = 'io g:{{name}} <name>, io g:{{alias}} <name>';
+    this.description = 'io {{name}} [args], io {{alias}} [args]';
   }
   run(args, argv) {
-    // Generator code here
+    // Command code here
   }
 }
 

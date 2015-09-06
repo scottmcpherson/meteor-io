@@ -9,7 +9,7 @@
   },
   "generators": {
     "template": {
-      "dest": "$appPath/templates"
+      "dest": "APP_PATH/templates"
     }
   }
 }
