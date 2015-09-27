@@ -5,12 +5,13 @@ io is an experimental, pluggable command line scaffolding tool written entirely 
 * [Config Files](#config-files)
 * [Generators](#generators)
 * [Commands](#commands)
+* [Templating](#templating)
 * [API](#api)
 
 ## Getting Started
-io leverage some es6 features. To use io, you will first need to install [iojs](https://iojs.org/en/).
+io leverage es6. To use io, you will first need to **install** [iojs](https://iojs.org/en/).
 
-After iojs is installed, install the meteor-io npm package:
+After [iojs](https://iojs.org/en/) is installed, install the meteor-io npm package:
 ```shell
 npm install -g meteor-io
 ```
@@ -87,32 +88,189 @@ To generate a new pluggable command:
 io g:cmd command-name
 ```
 
-## API
-io provides you with a high-level API for creating custom commands and generators. All of which can be accessed from within the `run()` methods of your generators or commands.
+## Templating
+io uses handlebars to generate templates. Templates can be used to dynamically create files and resources for you app. Take for example the template that's used to generate helpers, events, and life-cycle callbacks when you run `io g:template template-name`.
+The template that's used to generate those resources can be found at `path/to/your/io/templates/template.js`, and looks like this:
+```js
+Template.{{name}}.events({
+});
 
-#### this.ioTemplatesPath;
+Template.{{name}}.helpers({
+});
+
+Template.{{name}}.onCreated(function () {
+});
+
+Template.{{name}}.onRendered(function () {
+});
+
+Template.{{name}}.onDestroyed(function () {
+});
+```
+And we can use this template and interpolate the data by calling [writeTemplateWithData]() or [writeTemplatesWithData]().
+For example, given the command `io g:template template-name`:
+```
+  run(args, argv) {
+
+    var fileBaseName = self.getBaseName(args[1]);
+    // template-name
+
+    var camelCaseName = self.camelizeFileName(fileBaseName);
+    // templateName
+
+    this.writeTemplateWithData({
+      src: [this.ioTemplatesPath, 'template.js'],
+      dest: [this.config.dest, fileBaseName + '.js'],
+      data: { name: camelCaseName }
+    });
+
+```
+
+
+## API
+io provides you with a high-level API for creating custom commands and generators. All of which can be accessed and called from within the `run()` methods of your generators and commands.
+
+#### *this*.ioTemplatesPath;
 Gets the path to your io templates.
 
-#### this.projectPath;
+#### *this*.projectPath;
 Gets the path to your io project.
 
-#### this.appPath;
+#### *this*.appPath;
 Gets the path to your meteor app inside the io project.
 
-#### this.settingsPath;
+#### *this*.settingsPath;
 Gets the path to your app's local setting.json file.
 
-#### this.envPath;
+#### *this*.envPath;
 Gets the path to your app's local env.sh file.
 
-#### this.globalConfig;
+#### *this*.globalConfig;
 Gets the global config in a JSON format.
 
-#### this.localConfig;
+#### *this*.localConfig;
 Gets the project's local config in a JSON format.
 
-#### this.configFile;
+#### *this*.configFile;
 Gets the global config in a JSON format.
 
-#### this.configFile;
+#### *this*.configFile;
 Gets both the local and global config, merges them, and returns the JSON.
+
+#### *this*.mkdir([path]);
+Creates a directory with a given path String, or an Array of path parts.
+
+Examples:
+```js
+run(args, argv) {
+  this.mkdir([this.appPath, 'client', templates]);
+  // Creates a directory at: path/to/project/app/client/templates
+```
+```js
+run(args, argv) {
+  this.mkdir('path/to/project/app/client/templates');
+  // creates a directory at: path/to/project/app/client/templates
+```
+
+#### *this*.mkdirs([path], [path]);
+Creates x number of directories with given path Strings, or Arrays of path parts.
+
+Example:
+```js
+run(args, argv) {
+  var templatesPath = this.join(this.appPath, 'client', templates);
+  this.mkdirs([templatesPath, 'public'],
+              [templatesPath, 'admin']);
+  // Creates directories at:
+  // path/to/project/app/client/templates/public
+  // path/to/project/app/client/templates/admin
+```
+
+#### *this*.copy([srcPath], [destPath]);
+Copies a file from the given source path to the destination path.
+
+Both paths can be either a String, or an array of path parts.
+
+Examples:
+```js
+run(args, argv) {
+  var src = this.join(this.ioTemplatesPath, 'sample.js');
+  var dest = this.join(this.appPath, 'client', 'templates', 'sample.js');
+  this.copy(src, dest);
+  // Copies the file from: path/to/your/io/templates/sample.js
+  // to: path/to/your/project/app/client/templates/sample.js
+```
+
+#### *this*.copyAll({ src: src, dest: dest }, { src: src, dest: dest });
+Copies x number of files from given source paths to destination paths.
+
+Example:
+```js
+run(args, argv) {
+  var appTemplatesPath = this.join(this.appPath, 'client', 'templates');
+  this.copy({
+    src: [this.ioTemplatesPath, 'sample-one.js'],
+    dest: [appTemplatesPath, 'sample-one.js']
+  }, {
+    src: [this.ioTemplatesPath, 'sample-two.js'],
+    dest: [appTemplatesPath, 'sample-two.js']
+  });
+  // from: path/to/your/io/templates/sample-one.js
+  // to: path/to/your/project/app/client/templates/sample-one.js
+  // from: path/to/your/io/templates/sample-two.js
+  // to: path/to/your/project/app/client/templates/sample-two.js
+```
+
+#### *this*.remove([srcPath]);
+This will remove the file at the given source path.
+
+#### *this*.removeAll([srcPath], [srcPath]);
+This will remove x number of files at the given source paths.
+
+#### *this*.writeTemplateWithData({ src: [path], dest: [path], data: data });
+Grabs a template, interpolates the data, and writes the template to the specified dest path.
+
+Example:
+```js
+run(args, argv) {
+  var appTemplatesPath = this.join(this.appPath, 'client', 'templates');
+  this.copy({
+    src: [this.ioTemplatesPath, 'sample.js'],
+    dest: [appTemplatesPath, 'sample.js'],
+    data: { name: 'demo' }
+  });
+  // This will get the template from `path/to/your/io/templates/sample.js`,
+  // interpolate the data, and write the file to `path/to/your/project/app/client/templates/sample.js`
+```
+
+#### *this*.writeTemplatesWithData({args}, {args});
+Same as writeTemplateWithData, but allows you to write multiple templates with data.
+
+Example:
+```js
+run(args, argv) {
+  var appTemplatesPath = this.join(this.appPath, 'client', 'templates');
+  this.copy({
+    src: [this.ioTemplatesPath, 'sample.js'],
+    dest: [appTemplatesPath, 'sample.js'],
+    data: { name: 'demo' }
+  }, {
+    src: [this.ioTemplatesPath, 'sample-two.js'],
+    dest: [appTemplatesPath, 'sample-two.js'],
+    data: { name: 'demo' }
+  });
+  // This will get the template from `path/to/your/io/templates/sample.js`,
+  // interpolate the data, and write the file to `path/to/your/project/app/client/templates/sample.js`
+  // And the template from `path/to/your/io/templates/sample-two.js`,
+  // interpolate the data, and write the file to `path/to/your/project/app/client/templates/sample-two.js`
+```
+
+#### *this*.writeFile(filePath);
+Write a blank file to the specified filePath. filePath must be a **String**.
+
+Example:
+```js
+run(args, argv) {
+  this.writeFile('path/to/your/project/app/client/templates/sample.js');
+  // Creates a blank file at path/to/your/project/app/client/templates/sample.js
+```
