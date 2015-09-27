@@ -107,7 +107,7 @@ Template.{{name}}.onRendered(function () {
 Template.{{name}}.onDestroyed(function () {
 });
 ```
-And we can use this template and interpolate the data by calling [writeTemplateWithData]() or [writeTemplatesWithData]().
+And we can use this template and interpolate the data by calling [writeTemplateWithData](https://github.com/scottmcpherson/meteor-io#thiswritetemplatewithdata-src-path-dest-path-data-data-) or [writeTemplatesWithData](https://github.com/scottmcpherson/meteor-io#thiswritetemplateswithdataargs-args).
 For example, given the command `io g:template template-name`:
 ```
   run(args, argv) {
