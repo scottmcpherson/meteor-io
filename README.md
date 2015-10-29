@@ -9,9 +9,9 @@ io is an experimental, pluggable command line scaffolding tool written entirely 
 * [API](#api)
 
 ## Getting Started
-io leverage es6. To use io, you will first need to **install** [iojs](https://iojs.org/en/).
+io leverage es6 and required node v4.2.1 or later.
 
-After [iojs](https://iojs.org/en/) is installed, install the meteor-io npm package:
+To install the meteor-io npm package:
 ```shell
 npm install -g meteor-io
 ```
