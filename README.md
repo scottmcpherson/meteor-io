@@ -1,5 +1,9 @@
 # io (for Meteor)
-io is an experimental, pluggable command line scaffolding tool written entirely in es6.
+io is a pluggable and extendable, command-line scaffolding tool written entirely in es6.
+
+It gives you the ability to create custom commands, generators, and templates to facilitate your Meteor workflow.
+
+Windows is not yet supported.
 ## Table of Contents
 * [Getting Started](#getting-started)
 * [Config Files](#config-files)
