@@ -3,7 +3,7 @@ io is a pluggable and extendable, command-line scaffolding tool written entirely
 
 It gives you the ability to create custom commands, generators, and templates to facilitate your Meteor workflow.
 
-Windows is not yet supported.
+Windows has not yet been thoroughly tested.
 ## Table of Contents
 * [Getting Started](#getting-started)
 * [Config Files](#config-files)
