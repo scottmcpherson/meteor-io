@@ -1,4 +1,4 @@
-#!/usr/bin/env node --use_strict --harmony_modules --harmony-rest-parameters
+#!/usr/bin/env node
 
 var argv = require('minimist')(process.argv.slice(2));
 var args = argv._;
