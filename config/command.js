@@ -1,5 +1,5 @@
-var Command = require('{{commandPath}}');
-var path = require('path');
+const Command = require('{{commandPath}}');
+const path = require('path');
 
 class {{className}} extends Command {
   constructor () {
