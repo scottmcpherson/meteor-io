@@ -4,11 +4,20 @@
       "packages": {
         "add": [
           "kadira:flow-router",
-          "kadira:blaze-layout"
+          "react-meteor-data"
         ],
         "remove": [
           "autopublish",
           "insecure"
+        ]
+      },
+      "npm": {
+        "install": [
+          "meteor-node-stubs",
+          "react-mounter",
+          "react",
+          "react-dom",
+          "react-addons-pure-render-mixin"
         ]
       }
     }
@@ -18,7 +27,10 @@
       "dest": "APP_PATH/client/templates/DEST_PATH"
     },
     "route": {
-      "dest": "APP_PATH/lib/routes.js"
+      "dest": "APP_PATH/imports/startup/client/routes.js"
+    },
+    "component": {
+      "dest": "APP_PATH/imports/ui/DEST_PATH"
     }
   }
 }
