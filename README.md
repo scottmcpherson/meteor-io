@@ -119,7 +119,7 @@ For example, given the command `io g:template template-name`:
     var fileBaseName = self.getBaseName(args[1]);
     // template-name
 
-    var camelCaseName = self.camelizeFileName(fileBaseName);
+    var camelCaseName = self.camelize(fileBaseName);
     // templateName
 
     this.writeTemplateWithData({

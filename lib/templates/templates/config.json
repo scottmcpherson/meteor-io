@@ -24,13 +24,16 @@
   },
   "generators": {
     "template": {
-      "dest": "APP_PATH/client/templates/DEST_PATH"
+      "dest": "$APP_PATH/client/templates/$DEST_PATH"
     },
     "route": {
-      "dest": "APP_PATH/imports/startup/client/routes.js"
+      "dest": "$APP_PATH/imports/startup/client/routes.js"
     },
     "component": {
-      "dest": "APP_PATH/imports/ui/DEST_PATH"
+      "dest": "$APP_PATH/imports/ui/components/$DEST_PATH"
+    },
+    "page": {
+      "dest": "$APP_PATH/imports/ui/pages"
     }
   }
 }
